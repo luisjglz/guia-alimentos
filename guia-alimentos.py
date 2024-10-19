@@ -39,6 +39,10 @@ def main():
                     visibility: hidden !important;
                     display: none !important;
                 }
+                .block-container {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
 
         </style>
         """, unsafe_allow_html=True)
