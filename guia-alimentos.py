@@ -18,6 +18,12 @@ def get_similar_foods(df, grupo, subgrupo):
 # Streamlit app
 def main():
 
+    st.set_page_config(
+        page_title="Guía de alimentos",
+        page_icon="🍏",
+        layout="wide",
+    )
+
     st.markdown("""
         <style>
                .block-container {
