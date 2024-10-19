@@ -29,6 +29,11 @@ def main():
                 h2{
                     padding-bottom: 0;
                 }
+                .stDeployButton, header, .viewerBadge_link__qRIco, .viewerBadge_container__r5tak styles_viewerBadge__CvC9N {
+                    visibility: hidden !important;
+                    display: none !important;
+                }
+
         </style>
         """, unsafe_allow_html=True)
 
