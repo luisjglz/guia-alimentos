@@ -15,6 +15,18 @@ def get_similar_foods(df, grupo, subgrupo):
     similar_rows = df[(df['Grupo'] == grupo) & (df['Subgrupo'] == subgrupo)]
     return similar_rows
 
+# Function to highlight matching rows
+def highlight_matches(row, search_term):
+    # If the search term is found in the 'Alimento' column, highlight the row
+    highlight_color = 'background-color: lavender'
+    default_color = ''
+    
+    # Check if the search term is in the current row's 'Alimento' column
+    if search_term.lower() in row['Alimento'].lower():
+        return [highlight_color] * len(row)
+    else:
+        return [default_color] * len(row)
+
 # Streamlit app
 def main():
 
@@ -83,10 +95,12 @@ def main():
                 first_match = similar_foods.iloc[0]
                 st.table(first_match[['Energia', 'Hidratos', 'Grasa', 'Proteinas']])
 
-                # Display all similar foods and their portions for this group
-                st.subheader(f"Alimentos similares:")
-                st.dataframe(similar_foods[['Alimento', 'Racion']], hide_index=True, use_container_width=True)
+                # Apply highlighting to the matching rows
+                styled_similar_foods = similar_foods[['Alimento', 'Racion']].style.apply(highlight_matches, search_term=search_term, axis=1)
 
+                # Display all similar foods and their portions for this group, with highlighted matches
+                st.subheader(f"Alimentos similares:")
+                st.dataframe(styled_similar_foods, hide_index=True, use_container_width=True)
                 
         else:
             st.write("No se encontró el alimento")
